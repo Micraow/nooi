@@ -26,6 +26,7 @@ class AUTH:
             self.qsl_code()
             self.access_token()
             self.save_tokens()
+            self.load_tokens()
 
     def get_code(self):
         """获取长地址."""
@@ -80,6 +81,7 @@ class AUTH:
                 'refresh_token': self.ref_tk,
                 'redirect_uri': 'http://localhost',
                 'grant_type': 'refresh_token',
+                'client_secret': self.client_secret
             }
             self.r = requests.post(url, data=data, headers=headers)
             self.save_tokens()

@@ -1,21 +1,14 @@
-import tokens
-import threading
+import APIhandler
 '''这里是主逻辑，主应用程序.'''
 
-access_token = ""
-refresh_token = ""
-token = tokens.AUTH("66f884d4-0c48-48eb-8753-43524e18830f",
-                    "7vSsDNnV6i2snIp~2BDQ_-cc.jb-IPR2O4")  # 此时会自动检查有无登陆。
+API = APIhandler.APIs()
+def launcher(): 
+    '''应用启动器.'''
+    print("欢迎来到Nooi,") # TO-DO 后面应该加用户名的
 
-
-def check_token():  # 载入自动刷新token的线程
-    global token
-    token.refresh_acc_tk()
-    TokenreFresher = threading.Timer(
-        3585, token.refresh_acc_tk)  # 每过3599秒，access token会过期
-    TokenreFresher.start()
-
-
-def bootstrap():  # 启动时运行的代码
-    check_token()
+def bootstrap():  
+    '''# 启动时运行的代码.'''
+    API.check_token()
+    launcher()
     
+bootstrap()
