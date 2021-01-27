@@ -43,6 +43,8 @@ Nooi是一个Onedrive 资源管理器，是一个命令行工具，不只列出O
 
 [Microsoft Graph](https://docs.microsoft.com/zh-cn/graph/api/resources/onedrive?view=graph-rest-1.0)
 
+[Drive Item相关](https://docs.microsoft.com/zh-cn/graph/api/resources/driveitem?view=graph-rest-1.0)
+
 自述文件原文链接: [Micraow Blog](https://msblog.ml/nooi-readme/index.html)
 
 ## 最后
