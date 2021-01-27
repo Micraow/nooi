@@ -9,6 +9,9 @@ Nooi是一个Onedrive 资源管理器，是一个命令行工具，不只列出O
 
 ## 状态
 
+[![DeepSource](https://deepsource.io/gh/Micraow/nooi.svg/?label=active+issues&show_trend=true)](https://deepsource.io/gh/Micraow/nooi/?ref=repository-badge)
+
+[![DeepSource](https://deepsource.io/gh/Micraow/nooi.svg/?label=resolved+issues&show_trend=true)](https://deepsource.io/gh/Micraow/nooi/?ref=repository-badge)
 
 ## 警告
 由于微软政策的改变：
