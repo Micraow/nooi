@@ -32,7 +32,6 @@ class AUTH:
 
     def access_token(self):
         """发送请求"""
-        global code
         url = 'https://login.microsoftonline.com/common/oauth2/v2.0/token'
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -40,7 +39,7 @@ class AUTH:
         data = {
             'client_id': self.cliend_id,
             'scope': self.scope,
-            'code': code,
+            'code': self.code,
             'redirect_uri': 'https://login.microsoftonline.com/common/oauth2/nativeclient',
             'grant_type': 'authorization_code',
             'client_secret': self.client_secret
@@ -49,8 +48,7 @@ class AUTH:
 
     def qsl_code(self):
         """提取code"""
-        global code
-        code = dict(parse_qsl(urlsplit(self.backsite).query)).get('code')
+        self.code = dict(parse_qsl(urlsplit(self.backsite).query)).get('code')
 
     def save_tokens(self):
         """将access_token和refresh_token写入文件"""
