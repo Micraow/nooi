@@ -19,6 +19,8 @@ class AUTH:
                 self.acc_tk = all_date['access_token']
                 self.ref_tk = all_date['refresh_token']
         except FileNotFoundError:
+            fd = open("token.json", mode="w", encoding="utf-8")
+            fd.close()
             print('未登录！\n')
             self.get_code()
             self.qsl_code()
@@ -40,7 +42,7 @@ class AUTH:
             'client_id': self.cliend_id,
             'scope': self.scope,
             'code': self.code,
-            'redirect_uri': 'https://login.microsoftonline.com/common/oauth2/nativeclient',
+            'redirect_uri': 'http://localhost',
             'grant_type': 'authorization_code',
             'client_secret': self.client_secret
         }
@@ -76,7 +78,7 @@ class AUTH:
                 'client_id': self.cliend_id,
                 'scope': self.scope,
                 'refresh_token': self.ref_tk,
-                'redirect_uri': 'https://login.microsoftonline.com/common/oauth2/nativeclient',
+                'redirect_uri': 'http://localhost',
                 'grant_type': 'refresh_token',
             }
             self.r = requests.post(url, data=data, headers=headers)
