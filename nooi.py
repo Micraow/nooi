@@ -1,6 +1,6 @@
 import tokens
 import threading
-'''这里是主逻辑，主应用程序'''
+'''这里是主逻辑，主应用程序.'''
 
 access_token = ""
 refresh_token = ""

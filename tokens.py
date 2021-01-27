@@ -4,7 +4,7 @@ import json
 
 
 class AUTH:
-    """获取令牌,并刷新
+    """获取令牌,并刷新.
     :param acc_tk: access token
     :param ref_tk: refresh token
     """
@@ -28,12 +28,12 @@ class AUTH:
             self.save_tokens()
 
     def get_code(self):
-        """获取长地址"""
+        """获取长地址."""
         self.backsite = input("打开此链接:  https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id="+self.cliend_id +
                               "&response_type=code&redirect_uri=http://localhost&response_mode=query&scope="+self.scope+"&state=200  然后将localhost开头的地址栏中地址粘贴到这里:")
 
     def access_token(self):
-        """发送请求"""
+        """发送请求."""
         url = 'https://login.microsoftonline.com/common/oauth2/v2.0/token'
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -49,11 +49,11 @@ class AUTH:
         self.r = requests.post(url, data=data, headers=headers)
 
     def qsl_code(self):
-        """提取code"""
+        """提取code."""
         self.code = dict(parse_qsl(urlsplit(self.backsite).query)).get('code')
 
     def save_tokens(self):
-        """将access_token和refresh_token写入文件"""
+        """将access_token和refresh_token写入文件."""
         with open('token.json', mode='w') as token_recorder:
             data2 = json.loads(self.r.text)
             data3 = json.dumps(data2, sort_keys=True,
@@ -61,14 +61,14 @@ class AUTH:
             token_recorder.write(data3)
 
     def load_tokens(self):
-        """加载获取的access_token和refresh_token"""
+        """加载获取的access_token和refresh_token."""
         with open('token.json', mode='r') as ori_token:
             all_date = json.load(ori_token)
             self.acc_tk = all_date['access_token']
             self.ref_tk = all_date['refresh_token']
 
     def refresh_acc_tk(self):
-        """刷新访问令牌"""
+        """刷新访问令牌."""
         url = 'https://login.microsoftonline.com/common/oauth2/v2.0/token'
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
