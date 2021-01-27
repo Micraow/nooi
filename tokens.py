@@ -27,8 +27,8 @@ class AUTH:
 
     def get_code(self):
         """获取长地址"""
-        self.backsite = input("go to this site:  https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id="+self.cliend_id +
-                              "&response_type=code&redirect_uri=http://localhost&response_mode=query&scope="+self.scope+"&state=200 Paste the authenticated url here:")
+        self.backsite = input("打开此链接:  https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id="+self.cliend_id +
+                              "&response_type=code&redirect_uri=http://localhost&response_mode=query&scope="+self.scope+"&state=200  然后将localhost开头的地址栏中地址粘贴到这里:")
 
     def access_token(self):
         """发送请求"""
@@ -78,7 +78,6 @@ class AUTH:
                 'refresh_token': self.ref_tk,
                 'redirect_uri': 'https://login.microsoftonline.com/common/oauth2/nativeclient',
                 'grant_type': 'refresh_token',
-
             }
             self.r = requests.post(url, data=data, headers=headers)
             self.save_tokens()
