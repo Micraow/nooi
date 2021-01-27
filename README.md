@@ -7,6 +7,9 @@ Github 地址:[Nooi](https://github.com/Micraow/nooi)
 
 Nooi是一个Onedrive 资源管理器，是一个命令行工具，不只列出Onedrive 文件，更可上传，下载，删除等，争取做一个完整的管理器。
 
+## 状态
+
+
 ## 警告
 由于微软政策的改变：
 
