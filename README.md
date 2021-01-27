@@ -29,6 +29,9 @@ Nooi是一个Onedrive 资源管理器，是一个命令行工具，不只列出O
 5.全平台支持。官方应用只有Android , IOS , Windows.
 6.命令行操作，可与其它服务结合，而且 *比较酷*
 
+## 日志
+请见[Micraow's Blog](https://msblog.ml/nooi-readme/index.html#%E6%97%A5%E5%BF%97)
+
 ## TODO
 
 1. 多线程后台刷新令牌。
