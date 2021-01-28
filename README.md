@@ -17,6 +17,7 @@ Nooi是一个Onedrive 资源管理器，是一个命令行工具，不只列出O
 
 ![License](https://img.shields.io/github/license/Micraow/nooi?logo=license&style=flat-square)
 
+![Lines of code](https://img.shields.io/tokei/lines/github/Micraow/nooi?style=flat-square)
 
 ## 警告
 由于微软政策的改变：
