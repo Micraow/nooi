@@ -15,6 +15,9 @@ Nooi是一个Onedrive 资源管理器，是一个命令行工具，不只列出O
 
 ![CodeQL](https://github.com/Micraow/nooi/workflows/CodeQL/badge.svg)
 
+![License](https://img.shields.io/github/license/Micraow/nooi?logo=license&style=flat-square)
+
+
 ## 警告
 由于微软政策的改变：
 
@@ -36,7 +39,7 @@ Nooi是一个Onedrive 资源管理器，是一个命令行工具，不只列出O
 
 ## TODO
 
-1. 多线程后台刷新令牌。
+~~1. 多线程后台刷新令牌。~~
 2. 列出文件。
 3. 删除文件。
 4. 生成下载链接。
