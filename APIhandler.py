@@ -34,7 +34,7 @@ class APIs:
 
     def list_file(self, path=""):
         '''用于列出目录下的子项'''
-        url = endpoint+"/me/drive/root/children"
+        url = endpoint+"/me/drive/root:"+path+":/children"
         self.resp = requests.get(url, headers=self.headers)
         return self.resp.text
 
