@@ -30,8 +30,9 @@ class AUTH:
 
     def get_code(self):
         """获取长地址."""
+        scopes = self.scope.replace(" ","%20")
         self.backsite = input("打开此链接:  https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id="+self.cliend_id +
-                              "&response_type=code&redirect_uri=http://localhost&response_mode=query&scope="+self.scope+"&state=200  然后将localhost开头的地址栏中地址粘贴到这里:")
+                              "&response_type=code&redirect_uri=http://localhost&response_mode=query&scope="+scopes+"&state=200  然后将localhost开头的地址栏中地址粘贴到这里:")
 
     def access_token(self):
         """发送请求."""

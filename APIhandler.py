@@ -32,15 +32,38 @@ class APIs:
             token.refresh_acc_tk()
             time.sleep(3585)
 
-    def list_file(self, path=""):
+    def list_file(self, path="",callback):
         '''用于列出目录下的子项'''
         url = endpoint+"/me/drive/root:"+path+":/children"
-        self.resp = requests.get(url, headers=self.headers)
-        return self.resp.text
+        resp = requests.get(url, headers=self.headers)
+        return resp.text
+        callback(resp.text)
 
     def get_profile(self):
         '''获取配置文件，主要是用户名.'''
         url = endpoint+"/me"
-        self.resp = requests.get(url, headers=self.headers).text
-        self.resp2 = json.loads(self.resp)
-        return self.resp2['displayName']
+        resp = requests.get(url, headers=self.headers).text
+        resp2 = json.loads(resp)
+        return resp2['displayName']
+
+    def analyze(self, origin_resp):
+        """将响应中的数据解析出来，以便后续使用"""
+        self.files=[]
+        self.foldernames=[]
+        json_resp=json.load(origin_resp)
+        for items in json_resp['value']:
+
+
+
+class PATH:
+    '''专用来处理文件路径的类.
+        @direct：向上级目录或向下'''
+
+    def __init__(self):
+        self.root="/"
+
+    
+        
+
+
+
