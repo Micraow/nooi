@@ -1,5 +1,6 @@
 import APIhandler
 from rich.console import Console
+from rich.table import Table
 
 # 这里是主逻辑，主应用程序
 
@@ -7,6 +8,7 @@ console = Console()
 
 console.print("即将刷新token，请稍候", style="bright_black")
 API = APIhandler.APIs()
+path = APIhandler.PATH()
 
 
 def launcher():
@@ -33,3 +35,8 @@ class render:
 
     def __init__(self):
         pass
+
+    def main_loop(self):
+        """主循环，会一直运行."""
+        now_path = path.path
+        files_table = Table(title="你的位置"+path.path)
