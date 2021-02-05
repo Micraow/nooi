@@ -50,7 +50,8 @@ class APIs:
             return resp2['displayName']
         except:
             print(str(resp2))
-    def analyze(self, origin_resp):
+    @staticmethod
+    def analyze(origin_resp):
         """将响应中的数据解析出来，以便后续使用."""
         listOffiles={}
         json_resp = json.loads(origin_resp)
