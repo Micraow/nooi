@@ -50,14 +50,16 @@ class APIs:
         except:
             print(str(resp2))
     def analyze(self, origin_resp):
-        """将响应中的数据解析出来，以便后续使用"""
+        """将响应中的数据解析出来，以便后续使用."""
         list={}
         json_resp = json.loads(origin_resp)
-        try:
-            for items in json_resp['value']:
-                list[item["name"]]=item
-        except:
-            print(json_resp)
+        for item in json_resp['value']:
+            list[item["name"]]=item
         return list
 
 
+class PATH:
+    """处理路径，提供当前路径，上一级，并可在进入子目录时将文件夹名添加到路径."""
+
+    def __init__(self, direct, name=""):
+        pass

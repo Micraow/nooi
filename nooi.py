@@ -17,3 +17,9 @@ def bootstrap():
     launcher()
 
 bootstrap()
+
+class render:
+    """通过rich库来渲染界面."""
+
+    def __init__(self):
+        pass
