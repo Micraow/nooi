@@ -32,7 +32,7 @@ class APIs:
             token.refresh_acc_tk()
             time.sleep(3585)
 
-    def list_file(self, path="",callback):
+    def list_file(self, path="", callback):
         '''用于列出目录下的子项'''
         url = endpoint+"/me/drive/root:"+path+":/children"
         resp = requests.get(url, headers=self.headers)
@@ -48,22 +48,9 @@ class APIs:
 
     def analyze(self, origin_resp):
         """将响应中的数据解析出来，以便后续使用"""
-        self.files=[]
-        self.foldernames=[]
-        json_resp=json.load(origin_resp)
+        self.files = []
+        self.foldernames = []
+        json_resp = json.load(origin_resp)
         for items in json_resp['value']:
-
-
-
-class PATH:
-    '''专用来处理文件路径的类.
-        @direct：向上级目录或向下'''
-
-    def __init__(self):
-        self.root="/"
-
-    
-        
-
 
 
