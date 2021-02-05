@@ -17,6 +17,7 @@ class APIs:
         self.headers = {
             'Authorization': 'Bearer ' + token.acc_tk
         }
+        token.refresh_acc_tk()
 
     def check_token(self):
         """载入自动刷新token的线程."""
@@ -64,5 +65,16 @@ class APIs:
 class PATH:
     """处理路径，提供当前路径，上一级，并可在进入子目录时将文件夹名添加到路径."""
 
-    def __init__(self, direct, name=""):
-        pass
+    def __init__(self):
+        self.path = "/"
+
+    def upfold(self, path):
+        """向上一级."""
+        cut_path = path.split("/")
+        path_list = cut_path[:-1]
+        str = ""
+        self.path = str.join(path_list)
+
+    def goinfold(self, name):
+        """在路径后加上name(加上的路径就好了)但有格式要求:fold/fold2/,即在每一级的名称后加斜杠，可跳多级."""
+        self.path = self.path + name

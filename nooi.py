@@ -1,10 +1,11 @@
 import APIhandler
 from rich.console import Console
 
-#这里是主逻辑，主应用程序
+# 这里是主逻辑，主应用程序
 
 console = Console()
 
+console.print("即将刷新token，请稍候", style="bright_black")
 API = APIhandler.APIs()
 
 
