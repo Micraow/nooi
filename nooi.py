@@ -40,3 +40,5 @@ class render:
         """主循环，会一直运行."""
         now_path = path.path
         files_table = Table(title="你的位置"+path.path)
+        files_table.add_column("类型",justify="left",style="green")
+        files_table.add_column("文件名")
