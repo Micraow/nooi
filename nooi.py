@@ -5,18 +5,11 @@ from rich.console import Console
 console = Console()
 
 API = APIhandler.APIs()
-functs = {
-    "1": API.list_file
-}
 
 def launcher():
     '''应用启动器.'''
     console.print("欢迎来到Nooi,"+API.get_profile(),style='blue',justify='center')  # TO-DO 后面应该加用户名的
-    print("""1.列出文件""")
-    choice = input("""请选择(不带".")：""")
-    func = functs[choice]
-    print(func())
-
+    console.print(API.analyze(API.list_file()))
 
 def bootstrap():
     '''# 启动时运行的代码.'''

@@ -20,7 +20,6 @@ class APIs:
 
     def check_token(self):
         '''  载入自动刷新token的线程.'''
-        token.refresh_acc_tk()
         # 每过3599秒，access token会过期,所以获取令牌后3585秒就刷新
         TokenreFresher = threading.Thread(
             target=self.refresh_timer, daemon=True)
@@ -32,25 +31,34 @@ class APIs:
             token.refresh_acc_tk()
             time.sleep(3585)
 
-    def list_file(self, path="", callback):
+    def list_file(self, path="/"):
         '''用于列出目录下的子项'''
-        url = endpoint+"/me/drive/root:"+path+":/children"
+        if path == "/":
+            url = endpoint+"/me/drive/root/childern"
+            print(url)
+        else:
+            url = endpoint+"/me/drive/root:"+path+":/children"
         resp = requests.get(url, headers=self.headers)
         return resp.text
-        callback(resp.text)
 
     def get_profile(self):
         '''获取配置文件，主要是用户名.'''
         url = endpoint+"/me"
         resp = requests.get(url, headers=self.headers).text
         resp2 = json.loads(resp)
-        return resp2['displayName']
-
+        try:
+            return resp2['displayName']
+        except:
+            print(str(resp2))
     def analyze(self, origin_resp):
         """将响应中的数据解析出来，以便后续使用"""
-        self.files = []
-        self.foldernames = []
-        json_resp = json.load(origin_resp)
-        for items in json_resp['value']:
+        list={}
+        json_resp = json.loads(origin_resp)
+        try:
+            for items in json_resp['value']:
+                list[item["name"]]=item
+        except:
+            print(json_resp)
+        return list
 
 
