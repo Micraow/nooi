@@ -51,11 +51,11 @@ class APIs:
             print(str(resp2))
     def analyze(self, origin_resp):
         """将响应中的数据解析出来，以便后续使用."""
-        list={}
+        listOffiles={}
         json_resp = json.loads(origin_resp)
         for item in json_resp['value']:
-            list[item["name"]]=item
-        return list
+            listOffiles[item["name"]]=item
+        return listOffiles
 
 
 class PATH:
