@@ -11,7 +11,7 @@ endpoint = "https://graph.microsoft.com/v1.0"
 
 
 class APIs:
-    '''本程序的核心，与Microsoft Graph交互，获取API端点上的json数据.'''
+    """本程序的核心，与Microsoft Graph交互，获取API端点上的json数据."""
 
     def __init__(self):
         self.headers = {
@@ -19,7 +19,7 @@ class APIs:
         }
 
     def check_token(self):
-        '''  载入自动刷新token的线程.'''
+        """载入自动刷新token的线程."""
         # 每过3599秒，access token会过期,所以获取令牌后3585秒就刷新
         TokenreFresher = threading.Thread(
             target=self.refresh_timer, daemon=True)
@@ -33,30 +33,31 @@ class APIs:
             time.sleep(3585)
 
     def list_file(self, path="/"):
-        '''用于列出目录下的子项.'''
+        """用于列出目录下的子项."""
         if path == "/":
-            url = endpoint+"/me/drive/root/children"
+            url = endpoint + "/me/drive/root/children"
         else:
-            url = endpoint+"/me/drive/root:"+path+":/children"
+            url = endpoint + "/me/drive/root:" + path + ":/children"
         resp = requests.get(url, headers=self.headers)
         return resp.text
 
     def get_profile(self):
-        '''获取配置文件，主要是用户名.'''
-        url = endpoint+"/me"
+        """获取配置文件，主要是用户名."""
+        url = endpoint + "/me"
         resp = requests.get(url, headers=self.headers).text
         resp2 = json.loads(resp)
         try:
             return resp2['displayName']
-        except:
+        except BaseException:
             print(str(resp2))
+
     @staticmethod
     def analyze(origin_resp):
         """将响应中的数据解析出来，以便后续使用."""
-        listOffiles={}
+        listOffiles = {}
         json_resp = json.loads(origin_resp)
         for item in json_resp['value']:
-            listOffiles[item["name"]]=item
+            listOffiles[item["name"]] = item
         return listOffiles
 
 
