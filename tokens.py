@@ -9,7 +9,11 @@ class AUTH:
     :param ref_tk: refresh token
     """
 
-    def __init__(self, appid, appsc, scope="offline_access Files.Read.All Files.Read.All Files.ReadWrite Files.ReadWrite.All"):
+    def __init__(
+            self,
+            appid,
+            appsc,
+            scope="offline_access Files.Read.All Files.Read.All Files.ReadWrite Files.ReadWrite.All"):
         self.cliend_id = appid
         self.client_secret = appsc
         self.scope = scope
@@ -30,9 +34,13 @@ class AUTH:
 
     def get_code(self):
         """获取长地址."""
-        scopes = self.scope.replace(" ","%20")
-        self.backsite = input("打开此链接:  https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id="+self.cliend_id +
-                              "&response_type=code&redirect_uri=http://localhost&response_mode=query&scope="+scopes+"&state=200  然后将localhost开头的地址栏中地址粘贴到这里:")
+        scopes = self.scope.replace(" ", "%20")
+        self.backsite = input(
+            "打开此链接:  https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=" +
+            self.cliend_id +
+            "&response_type=code&redirect_uri=http://localhost&response_mode=query&scope=" +
+            scopes +
+            "&state=200  然后将localhost开头的地址栏中地址粘贴到这里:")
 
     def access_token(self):
         """发送请求."""
@@ -58,6 +66,8 @@ class AUTH:
         """将access_token和refresh_token写入文件."""
         with open('token.json', mode='w') as token_recorder:
             data2 = json.loads(self.r.text)
+            self.acc_tk = data2["access_token"]
+            self.ref_tk = data2['refresh_token']
             data3 = json.dumps(data2, sort_keys=True,
                                indent=4, separators=(',', ':'))
             token_recorder.write(data3)

@@ -22,6 +22,7 @@ class APIs:
     def check_token(self):
         """载入自动刷新token的线程."""
         # 每过3599秒，access token会过期,所以获取令牌后3585秒就刷新
+        token.refresh_acc_tk()
         TokenreFresher = threading.Thread(
             target=self.refresh_timer, daemon=True)
         TokenreFresher.start()
