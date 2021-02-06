@@ -66,12 +66,15 @@ class render:
 
     def hum_convert(self, value):
         """加上尺寸单位，使人类可读，输入以字节为单位."""
-        units = ["B", "KB", "MB", "GB", "TB", "PB"]
-        size = 1024.0
+        units = ["KB", "MB", "GB", "TB", "PB"]
+        size = 1024
         for i in range(len(units)):
-            if (value / size) < 1024.0 and (value / size) >= 1:
+            if (value / size) < 1024 and (value / size) >= 1:
                 value = value / size
-                return str(value) + units[i]
+                return str(round(value, 2)) + units[i]
+            elif value <= 1024:
+                return str(value) + "B"
+            value = value / size
 
 
 Render = render()
