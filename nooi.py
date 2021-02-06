@@ -36,8 +36,8 @@ class render:
     def __init__(self):
         pass
 
-    def main_loop(self):
-        """主循环，会一直运行."""
+    def print_files(self):
+        """将文件列表打印出来."""
         now_path = path.path
         all_file = []
         files_table = Table(title="你的位置" + path.path, style="yellow underline")
