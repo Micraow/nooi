@@ -43,8 +43,23 @@ class render:
         files_table = Table(title="你的位置" + path.path, style="yellow underline")
         files_table.add_column("序号", justify="center", style="red bold")
         files_table.add_column("类型", justify="left", style="green")
-        files_table.add_column("文件名", style="cyan")
+        files_table.add_column("名称", style="cyan")
         files_table.add_column("体积", style="blue", justify="center")
-        for name, resp in API.analyze(API.list_file(path.path)):
+        origin_data = API.analyze(API.list_file(path.path))
+        for name, resp in origin_data:
             all_file.append(name)
             num = all_file.index(name) + 1
+            if origin_data[name].get('file'):
+                type_of_file = "文件"
+            else:
+                type_of_file = "文件夹"
+            size = hum_convert(resp['size'])
+
+    def hum_convert(value):
+        """加上尺寸单位，使人类可读，输入以字节为单位."""
+        units = ["B", "KB", "MB", "GB", "TB", "PB"]
+        size = 1024.0
+        for i in range(len(units)):
+            if (value / size) < 1024.0 and (value / size) >= 1:
+                value = value / size
+                return value + units[i]
