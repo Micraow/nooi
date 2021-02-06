@@ -14,10 +14,10 @@ class APIs:
     """本程序的核心，与Microsoft Graph交互，获取API端点上的json数据."""
 
     def __init__(self):
+        token.refresh_acc_tk()
         self.headers = {
             'Authorization': 'Bearer ' + token.acc_tk
         }
-        token.refresh_acc_tk()
         self.origin_resp = ""
 
     def check_token(self):
