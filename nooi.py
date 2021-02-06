@@ -73,7 +73,7 @@ class render:
             if (value / size) < 1024 and (value / size) >= 1:
                 value = value / size
                 return str(round(value, 2)) + units[i]
-            elif value <= 1024:
+            if value <= 1024:
                 return str(value) + "B"
             value = value / size
 
