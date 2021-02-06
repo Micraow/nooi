@@ -20,8 +20,8 @@ class AUTH:
         try:
             with open('token.json', mode='r') as ori_token:
                 all_date = json.load(ori_token)
-                self.acc_tk = all_date['access_token']
-                self.ref_tk = all_date['refresh_token']
+                self.acc_tk = all_date["access_token"]
+                self.ref_tk = all_date["refresh_token"]
         except FileNotFoundError:
             fd = open("token.json", mode="w", encoding="utf-8")
             fd.close()
@@ -67,7 +67,7 @@ class AUTH:
         with open('token.json', mode='w') as token_recorder:
             data2 = json.loads(self.r.text)
             self.acc_tk = data2["access_token"]
-            self.ref_tk = data2['refresh_token']
+            self.ref_tk = data2["refresh_token"]
             data3 = json.dumps(data2, sort_keys=True,
                                indent=4, separators=(',', ':'))
             token_recorder.write(data3)
@@ -76,8 +76,8 @@ class AUTH:
         """加载获取的access_token和refresh_token."""
         with open('token.json', mode='r') as ori_token:
             all_date = json.load(ori_token)
-            self.acc_tk = all_date['access_token']
-            self.ref_tk = all_date['refresh_token']
+            self.acc_tk = all_date["access_token"]
+            self.ref_tk = all_date["refresh_token"]
 
     def refresh_acc_tk(self):
         """刷新访问令牌."""
