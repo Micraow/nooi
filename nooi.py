@@ -64,7 +64,8 @@ class render:
             files_table.add_row(str(num), type_of_file, name, size)
         console.print(files_table)
 
-    def hum_convert(self, value):
+    @staticmethod
+    def hum_convert(value):
         """加上尺寸单位，使人类可读，输入以字节为单位."""
         units = ["KB", "MB", "GB", "TB", "PB"]
         size = 1024
@@ -75,7 +76,6 @@ class render:
             elif value <= 1024:
                 return str(value) + "B"
             value = value / size
-
 
 Render = render()
 bootstrap()

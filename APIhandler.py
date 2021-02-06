@@ -29,7 +29,7 @@ class APIs:
 
     @staticmethod
     def refresh_timer():
-        """刷新token的函数，被check_token作为多线程target调用"""
+        """刷新token的函数，被check_token作为多线程target调用."""
         while True:
             token.refresh_acc_tk()
             time.sleep(3585)
