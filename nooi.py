@@ -49,7 +49,7 @@ class render:
         """将文件列表打印出来."""
         now_path = path.path
         all_file = []
-        files_table = Table(title="你的位置" + path.path, style="yellow underline")
+        files_table = Table(title="你的位置" + now_path, style="yellow underline")
         files_table.add_column("序号", justify="center", style="red bold")
         files_table.add_column("类型", justify="left", style="green")
         files_table.add_column("名称", style="cyan")
@@ -58,11 +58,13 @@ class render:
         for name, resp in self.origin_data:
             all_file.append(name)
             num = all_file.index(name) + 1
-            if origin_data[name].get('file'):
+            if self.origin_data[name].get('file'):
                 type_of_file = "文件"
             else:
                 type_of_file = "文件夹"
-            size = hum_convert(resp['size'])
+            size = self.hum_convert(resp['size'])
+            files_table.add_row(num, type_of_file, name, size)
+            
 
     def hum_convert(value):
         """加上尺寸单位，使人类可读，输入以字节为单位."""
@@ -71,4 +73,4 @@ class render:
         for i in range(len(units)):
             if (value / size) < 1024.0 and (value / size) >= 1:
                 value = value / size
-                return value + units[i]
+                return str(value) + units[i]
