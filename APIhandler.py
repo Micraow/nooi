@@ -73,8 +73,8 @@ class PATH:
         """向上一级."""
         cut_path = path.split("/")
         path_list = cut_path[:-1]
-        str = ""
-        self.path = str.join(path_list)
+        strTocut = ""
+        self.path = strTocut.join(path_list)
 
     def goinfold(self, name):
         """在路径后加上name(加上的路径就好了)但有格式要求:fold/fold2/,即在每一级的名称后加斜杠，可跳多级."""
