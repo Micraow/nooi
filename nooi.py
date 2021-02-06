@@ -10,6 +10,7 @@ console.print("即将刷新token，请稍候", style="bright_black")
 API = APIhandler.APIs()
 path = APIhandler.PATH()
 
+
 def launcher():
     """应用启动器."""
     console.print(
@@ -71,6 +72,7 @@ class render:
             if (value / size) < 1024.0 and (value / size) >= 1:
                 value = value / size
                 return str(value) + units[i]
+
 
 Render = render()
 bootstrap()
