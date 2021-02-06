@@ -34,8 +34,17 @@ class render:
     """通过rich库来渲染界面."""
 
     def __init__(self):
-        pass
-
+        self.origin_data = ""
+    
+    def main_loop(self):
+        """主循环，不断执行，流程如下.
+        1.打印出文件列表.
+        2.打印出在当前目录可进行的操作（上传）.
+        3.用户选中项目，检查它是文件还是文件夹，并展示对应操作。
+        4.操作完成，返回，再次打印列表.
+        """
+        self.print_files()
+        
     def print_files(self):
         """将文件列表打印出来."""
         now_path = path.path
@@ -45,8 +54,8 @@ class render:
         files_table.add_column("类型", justify="left", style="green")
         files_table.add_column("名称", style="cyan")
         files_table.add_column("体积", style="blue", justify="center")
-        origin_data = API.analyze(API.list_file(path.path))
-        for name, resp in origin_data:
+        self.origin_data = API.analyze(API.list_file(path.path))
+        for name, resp in self.origin_data:
             all_file.append(name)
             num = all_file.index(name) + 1
             if origin_data[name].get('file'):
