@@ -86,13 +86,11 @@ class render:
     def base_action(self):
         """在一个文件夹内，即使不选中文件也能执行的操作"""
         global all_file
-        def deeper(num):
+        def deeper(name):
             """说明是向下移动的."""
-            file_num = num - 1
-            name = all_file[file_num]
             if self.origin_data[name].get('file'):
                 path.goinfold("/" + name)
-                self.FileActions()
+                self.FileActions(name)
                 path.upfold()
             else:
                 path.goinfold("/" + name)
@@ -101,12 +99,14 @@ class render:
         if path.path != "":
             print("[b]返回上一级目录。")
         print("请填写选项字母:")
-        choice = input()
+        choice = input().lower()
         if choice == "a":
             print("请填入项目序号")
             try:
                 num = int(input())
-                deeper(num)
+                file_num = num - 1
+                name = all_file[file_num]
+                deeper(name)
             except IndexError:
                 print("您输入的数字超范围了。")
                 self.base_action()
@@ -119,9 +119,21 @@ class render:
            print("请检查填写格式是否有误，或者填错了。")
            self.base_action()
 
-    def FileActions(self):
-        print("开发中")
-
+    def FileActions(self, name):
+        """文件的相关操作"""
+        console.print(name, justify="center")
+        console.print("在线链接"+self.origin_data[name]["webUrl"], style="blue")
+        print("[a]获取下载链接")
+        print("[b]获取原响应")
+        print("请选择功能")
+        choice = input().lower()
+        if choice == "a":
+            console.print("下载链接是:"+self.origin_data[name]["@microsoft.graph.downloadUrl"], style="blue")
+        elif choice == "b":
+            console.print(self.origin_data[name])
+        else:
+            print("请检查填写格式是否有误，或者填错")
+        path.upfold()
 
 Render = render()
 bootstrap()
