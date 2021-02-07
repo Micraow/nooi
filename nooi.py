@@ -63,11 +63,11 @@ class render:
             all_file.append(name)
             num = all_file.index(name) + 1
             if self.origin_data[name].get('file'):
-                type_of_file = "文件"
+                type_of_object = "文件"
             else:
-                type_of_file = "文件夹"
+                type_of_object = "文件夹"
             size = self.hum_convert(resp['size'])
-            files_table.add_row(str(num), type_of_file, name, size)
+            files_table.add_row(str(num), type_of_object, name, size)
         console.print(files_table)
 
     @staticmethod
@@ -84,22 +84,43 @@ class render:
             value = value / size
 
     def base_action(self):
-        """在一个文件夹内，即使不选中文件也能执行的操作。"""
+        """在一个文件夹内，即使不选中文件也能执行的操作"""
         global all_file
-        print("请填写项目序号:")
-        num = int(input())
-        file_num = num - 1
-        name = all_file[file_num]
-        if self.origin_data[name].get('file'):
-            type_of_file = "文件"
-            path.goinfold(name)
-            self.FileActions()
+        def deeper(num):
+            """说明是向下移动的."""
+            file_num = num - 1
+            name = all_file[file_num]
+            if self.origin_data[name].get('file'):
+                path.goinfold("/" + name)
+                self.FileActions()
+                path.upfold()
+            else:
+                path.goinfold("/" + name)
+
+        print("[a]进入一个项目页")
+        if path.path != "":
+            print("[b]返回上一级目录。")
+        print("请填写选项字母:")
+        choice = input()
+        if choice == "a":
+            print("请填入项目序号")
+            try:
+                num = int(input())
+                deeper(num)
+            except IndexError:
+                print("您输入的数字超范围了。")
+                self.base_action()
+            except ValueError:
+                print("请输入一个数字。")
+                self.base_action()
+        elif choice == "b":
+            path.upfold()
         else:
-            type_of_file = "文件夹"
-            path.goinfold("/" + name)
+           print("请检查填写格式是否有误，或者填错了。")
+           self.base_action()
 
     def FileActions(self):
-        pass
+        print("开发中")
 
 
 Render = render()

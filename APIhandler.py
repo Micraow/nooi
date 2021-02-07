@@ -40,7 +40,9 @@ class APIs:
             url = endpoint + "/me/drive/root/children"
         else:
             url = endpoint + "/me/drive/root:" + path + ":/children"
+        # print(url)
         self.origin_resp = requests.get(url, headers=self.headers)
+        # print(self.origin_resp.text)
         return self.origin_resp.text
 
     def get_profile(self):
@@ -69,11 +71,11 @@ class PATH:
     def __init__(self):
         self.path = ""
 
-    def upfold(self, path):
+    def upfold(self):
         """向上一级."""
-        cut_path = path.split("/")
+        cut_path = self.path.split("/")
         path_list = cut_path[:-1]
-        strTocut = ""
+        strTocut = "/"
         self.path = strTocut.join(path_list)
 
     def goinfold(self, name):
