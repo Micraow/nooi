@@ -64,20 +64,19 @@ class APIs:
             listOffiles[item["name"]] = item
         return listOffiles
 
-
 class PATH:
     """处理路径，提供当前路径，上一级，并可在进入子目录时将文件夹名添加到路径."""
 
     def __init__(self):
         self.path = ""
 
-    def upfold(self):
+    def upfolder(self):
         """向上一级."""
         cut_path = self.path.split("/")
         path_list = cut_path[:-1]
         strTocut = "/"
         self.path = strTocut.join(path_list)
 
-    def goinfold(self, name):
-        """在路径后加上name(加上的路径就好了)但有格式要求:fold/fold2,即在最后一级的名称后不加斜杠，可跳多级."""
+    def goinfolder(self, name):
+        """在路径后加上name(加上的路径就好了)但有格式要求:folder/folder2,即在最后一级的名称后不加斜杠，可跳多级."""
         self.path = self.path + name
