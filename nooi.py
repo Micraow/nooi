@@ -18,7 +18,8 @@ def launcher():
         API.get_profile(),
         style='blue',
         justify='center')  # TO-DO 后面应该加用户名的
-    Render.main_loop()  # Render是实例，render是类
+    while True:
+        Render.main_loop()  # Render是实例，render是类
     # console.print(API.analyze(API.list_file()))
 
 
@@ -42,10 +43,15 @@ class render:
         4.操作完成，返回，再次打印列表.
         """
         self.print_files()
+        self.base_action()
 
     def print_files(self):
         """将文件列表打印出来."""
-        now_path = path.path
+        global all_file
+        if path.path == "":
+            now_path = "/"
+        else:
+            now_path = path.path
         all_file = []
         files_table = Table(title="你的位置" + now_path, style="yellow underline")
         files_table.add_column("序号", justify="center", style="red bold")
@@ -76,6 +82,24 @@ class render:
             if value <= 1024:
                 return str(value) + "B"
             value = value / size
+
+    def base_action(self):
+        """在一个文件夹内，即使不选中文件也能执行的操作。"""
+        global all_file
+        print("请填写项目序号:")
+        num = int(input())
+        file_num = num - 1
+        name = all_file[file_num]
+        if self.origin_data[name].get('file'):
+            type_of_file = "文件"
+            path.goinfold(name)
+            self.FileActions()
+        else:
+            type_of_file = "文件夹"
+            path.goinfold("/" + name)
+
+    def FileActions(self):
+        pass
 
 
 Render = render()

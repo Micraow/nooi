@@ -34,9 +34,9 @@ class APIs:
             token.refresh_acc_tk()
             time.sleep(3585)
 
-    def list_file(self, path="/"):
+    def list_file(self, path=""):
         """用于列出目录下的子项."""
-        if path == "/":
+        if path == "":
             url = endpoint + "/me/drive/root/children"
         else:
             url = endpoint + "/me/drive/root:" + path + ":/children"
@@ -67,7 +67,7 @@ class PATH:
     """处理路径，提供当前路径，上一级，并可在进入子目录时将文件夹名添加到路径."""
 
     def __init__(self):
-        self.path = "/"
+        self.path = ""
 
     def upfold(self, path):
         """向上一级."""
@@ -77,5 +77,5 @@ class PATH:
         self.path = strTocut.join(path_list)
 
     def goinfold(self, name):
-        """在路径后加上name(加上的路径就好了)但有格式要求:fold/fold2/,即在每一级的名称后加斜杠，可跳多级."""
+        """在路径后加上name(加上的路径就好了)但有格式要求:fold/fold2,即在最后一级的名称后不加斜杠，可跳多级."""
         self.path = self.path + name
