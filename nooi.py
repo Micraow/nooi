@@ -86,6 +86,7 @@ class render:
     def base_action(self):
         """在一个文件夹内，即使不选中文件也能执行的操作"""
         global all_file
+
         def deeper(name):
             """说明是向下移动的."""
             if self.origin_data[name].get('file'):
@@ -116,24 +117,28 @@ class render:
         elif choice == "b":
             path.upfold()
         else:
-           print("请检查填写格式是否有误，或者填错了。")
-           self.base_action()
+            print("请检查填写格式是否有误，或者填错了。")
+            self.base_action()
 
     def FileActions(self, name):
         """文件的相关操作"""
         console.print(name, justify="center")
-        console.print("在线链接"+self.origin_data[name]["webUrl"], style="blue")
+        console.print("在线链接" + self.origin_data[name]["webUrl"], style="blue")
         print("[a]获取下载链接")
         print("[b]获取原响应")
         print("请选择功能")
         choice = input().lower()
         if choice == "a":
-            console.print("下载链接是:"+self.origin_data[name]["@microsoft.graph.downloadUrl"], style="blue")
+            console.print(
+                "下载链接是:" +
+                self.origin_data[name]["@microsoft.graph.downloadUrl"],
+                style="blue")
         elif choice == "b":
             console.print(self.origin_data[name])
         else:
             print("请检查填写格式是否有误，或者填错")
         path.upfold()
+
 
 Render = render()
 bootstrap()
