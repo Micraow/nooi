@@ -72,7 +72,7 @@ class APIs:
         resp2 = json.loads(resp)
         return resp2
 
-    def new_folder(self, parent_item_id='', foldername):
+    def new_folder(self, foldername, parent_item_id=''):
         """用于新建文件夹，需要提供父文件夹的id"""
         if parent_item_id == '':  # 在根目录可不提供
             url = endpoint + "/me/drive/root/children"
