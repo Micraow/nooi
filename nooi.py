@@ -122,7 +122,7 @@ class render:
             path.upfolder()
         elif choice == "b":
             foldername = input("请键入文件夹名（若已存在自动改名）")
-            parent_item_id = self.origin_data[0]["parentReference"]["id"]
+            parent_item_id = self.origin_data[all_file[0]]["parentReference"]["id"]
             console.print("已创建为"+ API.new_folder(foldername, parent_item_id)["name"], style="blue")
 
         else:
