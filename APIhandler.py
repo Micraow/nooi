@@ -76,11 +76,11 @@ class APIs:
         if parent_item_id == '':  # 在根目录可不提供
             url = endpoint + "/me/drive/root/children"
         else:
-            url = endpoint + "/me/drive/items/" + parent_item_id + "children"
+            url = endpoint + "/me/drive/items/" + parent_item_id + "/children"
         data = {
             "name": foldername,
             "folder": {},
-            "@microsoft.graph.conflictBehavior": "rename"
+            "@microsoft.graph.conflictBehavior": "rename",
         }
 
         resp = requests.post(url=url, headers=self.headers, data=data).text
