@@ -1,3 +1,5 @@
+from re import A
+from threading import setprofile
 import APIhandler
 from rich.console import Console
 from rich.table import Table
@@ -9,15 +11,19 @@ console = Console()
 console.print("即将刷新token，请稍候", style="bright_black")
 API = APIhandler.APIs()
 path = APIhandler.PATH()
+DriveType = API.get_drive()["driveType"]
 
 
 def launcher():
     """应用启动器."""
     console.print(
         "欢迎来到Nooi," +
-        API.get_profile(),
+        API.get_profile(),  # 用户名
         style='blue',
-        justify='center')  # TO-DO 后面应该加用户名的
+        justify='center')
+    console.print("您使用的是" + DriveType + "类型的Onedrive", style='blue')
+
+
     while True:
         Render.main_loop()  # Render是实例，render是类
     # console.print(API.analyze(API.list_file()))

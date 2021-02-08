@@ -1,3 +1,4 @@
+from rich.table import header
 import tokens
 import requests
 import json
@@ -63,6 +64,30 @@ class APIs:
         for item in json_resp['value']:
             listOffiles[item["name"]] = item
         return listOffiles
+
+    def get_drive(self):
+        """用于获取驱动器项目，主要是判断Onedrive类型"""
+        url = endpoint + "/me/drive"
+        resp = requests.get(url, headers=self.headers).text
+        resp2 = json.loads(resp)
+        return resp2
+
+    def new_folder(self, parent_item_id='', foldername):
+        """用于新建文件夹，需要提供父文件夹的id"""
+        if parent_item_id == '':  # 在根目录可不提供
+            url = endpoint + "/me/drive/root/children"
+        else:
+            url = endpoint + "/me/drive/items/" + parent_item_id + "children"
+        data = {
+            "name": foldername,
+            "folder": {},
+            "@microsoft.graph.conflictBehavior": "rename"
+        }
+
+        resp = requests.post(url=url, headers=self.headers, data=data).text
+        resp2 = json.loads(resp)
+        return resp2
+
 
 class PATH:
     """处理路径，提供当前路径，上一级，并可在进入子目录时将文件夹名添加到路径."""
