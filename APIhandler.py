@@ -16,7 +16,8 @@ class APIs:
     def __init__(self):
         token.refresh_acc_tk()
         self.headers = {
-            'Authorization': 'Bearer ' + token.acc_tk
+            'Authorization': 'Bearer ' + token.acc_tk,
+            'Content-Type': 'application/json'
         }
         self.origin_resp = ""
 
@@ -82,7 +83,7 @@ class APIs:
             "folder": {},
             "@microsoft.graph.conflictBehavior": "rename",
         }
-
+        data = json.dumps(data, ensure_ascii=False)
         resp = requests.post(url=url, headers=self.headers, data=data).text
         resp2 = json.loads(resp)
         return resp2
