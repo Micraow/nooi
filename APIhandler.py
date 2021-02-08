@@ -1,4 +1,3 @@
-from rich.table import header
 import tokens
 import requests
 import json

@@ -1,5 +1,3 @@
-from re import A
-from threading import setprofile
 import APIhandler
 from rich.console import Console
 from rich.table import Table
@@ -124,10 +122,9 @@ class render:
             path.upfolder()
         elif choice == "b":
             foldername = input("请键入文件夹名（若已存在自动改名）")
-            if path.path == "":
-                parent_item_id = ""
-            else:
-                parent_item_id = self.origin_data[0][] 
+            parent_item_id = self.origin_data[0]["parentReference"]["id"]
+            console.print("已创建为"+ API.new_folder(foldername, parent_item_id)["name"], style="blue")
+
         else:
             print("请检查填写格式是否有误，或者填错了。")
             self.base_action()
