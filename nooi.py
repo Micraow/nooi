@@ -23,7 +23,6 @@ def launcher():
         justify='center')
     console.print("您使用的是" + DriveType + "类型的Onedrive", style='blue')
 
-
     while True:
         Render.main_loop()  # Render是实例，render是类
     # console.print(API.analyze(API.list_file()))
@@ -103,8 +102,9 @@ class render:
                 path.goinfolder("/" + name)
 
         print("[a]进入一个项目页")
+        print("[b]新建文件夹")
         if path.path != "":
-            print("[b]返回上一级目录。")
+            print("[c]返回上一级目录。")
         print("请填写选项字母:")
         choice = input().lower()
         if choice == "a":
@@ -120,8 +120,14 @@ class render:
             except ValueError:
                 print("请输入一个数字。")
                 self.base_action()
-        elif choice == "b":
+        elif choice == "c":
             path.upfolder()
+        elif choice == "b":
+            foldername = input("请键入文件夹名（若已存在自动改名）")
+            if path.path == "":
+                parent_item_id = ""
+            else:
+                parent_item_id = self.origin_data[0][] 
         else:
             print("请检查填写格式是否有误，或者填错了。")
             self.base_action()
