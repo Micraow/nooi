@@ -88,6 +88,10 @@ class APIs:
         resp2 = json.loads(resp)
         return resp2
 
+    def convert_download(self, id):
+        """部分文件可转换为PDF再下载，详见https://developer.microsoft.com/zh-cn/graph/graph-explorer ."""
+        pass
+
 
 class PATH:
     """处理路径，提供当前路径，上一级，并可在进入子目录时将文件夹名添加到路径."""
