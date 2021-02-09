@@ -137,10 +137,9 @@ class render:
         resp = self.origin_data[name]
         console.print(name, justify="center")
         console.print("在线链接" + resp["webUrl"], style="blue")
-        console.print("大小：" + resp["size"], style="blue")
+        console.print("大小：" + self.hum_convert(resp['size']), style="blue")
         console.print("由 "+resp["createdBy"]["user"]
                       ["displayName"]+"创建", style="blue")
-                      
 
         print("[a]获取下载链接")
         print("[b]获取原响应")
