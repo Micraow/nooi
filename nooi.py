@@ -122,9 +122,11 @@ class render:
             path.upfolder()
         elif choice == "b":
             foldername = input("请键入文件夹名（若已存在自动改名）")
-            parent_item_id = self.origin_data[all_file[0]]["parentReference"]["id"]
+            parent_item_id = self.origin_data[all_file[0]
+                                              ]["parentReference"]["id"]
             # print(API.new_folder(foldername, parent_item_id))
-            console.print("已创建为"+ API.new_folder(foldername, parent_item_id)["name"], style="blue")
+            console.print("已创建为" + API.new_folder(foldername,
+                                                  parent_item_id)["name"], style="blue")
 
         else:
             print("请检查填写格式是否有误，或者填错了。")
@@ -132,8 +134,14 @@ class render:
 
     def FileActions(self, name):
         """文件的相关操作"""
+        resp = self.origin_data[name]
         console.print(name, justify="center")
-        console.print("在线链接" + self.origin_data[name]["webUrl"], style="blue")
+        console.print("在线链接" + resp["webUrl"], style="blue")
+        console.print("大小：" + resp["size"], style="blue")
+        console.print("由 "+resp["createdBy"]["user"]
+                      ["displayName"]+"创建", style="blue")
+                      
+
         print("[a]获取下载链接")
         print("[b]获取原响应")
         print("[c]返回")
