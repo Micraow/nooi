@@ -13,7 +13,7 @@ class AUTH:
             self,
             appid,
             appsc,
-            scope="offline_access Files.Read.All Files.Read.All Files.ReadWrite Files.ReadWrite.All"):
+            scope="offline_access Files.Read.All Files.Read.All Files.ReadWrite Files.ReadWrite.All profile openid"):
         self.cliend_id = appid
         self.client_secret = appsc
         self.scope = scope
