@@ -36,7 +36,7 @@ class render:
     """通过rich库来渲染界面."""
 
     def __init__(self):
-        self.origin_data = ""
+        self.origin_data = dict()
 
     def main_loop(self):
         """主循环，不断执行，流程如下.
@@ -135,6 +135,7 @@ class render:
     def FileActions(self, name):
         """文件的相关操作"""
         resp = self.origin_data[name]
+        id = self.origin_data[name]["id"]
         console.print(name, justify="center")
         console.print("在线链接" + resp["webUrl"], style="blue")
         console.print("大小：" + self.hum_convert(resp['size']), style="blue")
@@ -143,7 +144,8 @@ class render:
 
         print("[a]获取下载链接")
         print("[b]获取原响应")
-        print("[c]返回")
+        print("[c]删除")
+        print("[d]返回")
         print("请选择功能")
         choice = input().lower()
         if choice == "a":
@@ -151,10 +153,30 @@ class render:
                 "下载链接是:" +
                 self.origin_data[name]["@microsoft.graph.downloadUrl"],
                 style="blue")
+            print("1.尝试转换为pdf")
+            print("2.完成")
+            choice = input()
+            if choice == "1":
+                resp = API.convert_download(id)
+                if resp.status_code == 200:
+                    print("已转化")
+                    console.print("链接是:" + resp.url, style="blue")
+                else:
+                    print("不支持转换，可转换格式请见https://docs.microsoft.com/zh-cn/graph/api/driveitem-get-content-format?view=graph-rest-1.0&tabs=http")
+            elif choice == "2":
+                pass
+            else:
+                print("无此选项")
         elif choice == "b":
             console.print(self.origin_data[name])
-        elif choice == "c":
+        elif choice == "d":
             pass
+        elif choice == "c":
+            code = API.delete(id)
+            if code == 204:
+                console.print("删除成功!", style="red")
+            else:
+                print("遇到错误")
         else:
             print("请检查填写格式是否有误，或者填错")
 

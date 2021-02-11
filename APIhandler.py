@@ -90,9 +90,17 @@ class APIs:
 
     def convert_download(self, id):
         """部分文件可转换为PDF再下载，详见https://developer.microsoft.com/zh-cn/graph/graph-explorer ."""
-        pass
+        url = endpoint + "/me/drive/items/" + id + "/content?format=pdf"
+        resp = requests.get(url=url, headers=self.headers)
+        # print(resp.text)
+        # print(resp.status_code)
+        return resp
 
-
+    def delete(self, id):
+        """删除选定文件."""
+        url = endpoint + "/me/drive/items/" + id
+        resp = requests.delete(url=url, headers=self.headers)
+        return resp.status_code
 class PATH:
     """处理路径，提供当前路径，上一级，并可在进入子目录时将文件夹名添加到路径."""
 

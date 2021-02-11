@@ -1,4 +1,4 @@
-from urllib.parse import parse_qsl, urlsplit
+from urllib.parse import parse_qsl, urlsplit, quote
 import requests
 import json
 
@@ -34,7 +34,7 @@ class AUTH:
 
     def get_code(self):
         """获取长地址."""
-        scopes = self.scope.replace(" ", "%20")
+        scopes = quote(self.scope)
         self.backsite = input(
             "打开此链接:  https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=" +
             self.cliend_id +
