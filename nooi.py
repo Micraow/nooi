@@ -125,8 +125,12 @@ class render:
             parent_item_id = self.origin_data[all_file[0]
                                               ]["parentReference"]["id"]
             # print(API.new_folder(foldername, parent_item_id))
-            console.print("已创建为" + API.new_folder(foldername,
-                                                  parent_item_id)["name"], style="blue")
+            console.print(
+                "已创建为" +
+                API.new_folder(
+                    foldername,
+                    parent_item_id)["name"],
+                style="blue")
 
         else:
             print("请检查填写格式是否有误，或者填错了。")
@@ -139,8 +143,8 @@ class render:
         console.print(name, justify="center")
         console.print("在线链接" + resp["webUrl"], style="blue")
         console.print("大小：" + self.hum_convert(resp['size']), style="blue")
-        console.print("由 "+resp["createdBy"]["user"]
-                      ["displayName"]+"创建", style="blue")
+        console.print("由 " + resp["createdBy"]["user"]
+                      ["displayName"] + "创建", style="blue")
 
         print("[a]获取下载链接")
         print("[b]获取原响应")
@@ -155,18 +159,21 @@ class render:
                 style="blue")
             print("1.尝试转换为pdf")
             print("2.完成")
-            choice = input()
+            choice = input("请填入数字")
             if choice == "1":
                 resp = API.convert_download(id)
-                if resp.status_code == 200:
-                    print("已转化")
-                    console.print("链接是:" + resp.url, style="blue")
+                if resp.status_code == 302:
+                    print("已转化,请注意，此链接有效期仅几分钟")
+                    console.print(
+                        "链接是:" + resp.headers['Location'], style="blue")
                 else:
-                    print("不支持转换，可转换格式请见https://docs.microsoft.com/zh-cn/graph/api/driveitem-get-content-format?view=graph-rest-1.0&tabs=http")
+                    print(
+                        "不支持转换，可转换格式请见https://docs.microsoft.com/zh-cn/graph/api/driveitem-get-content-format?view=graph-rest-1.0&tabs=http")
             elif choice == "2":
-                pass
+                self.FileActions(name)
             else:
                 print("无此选项")
+                self.FileActions(name)
         elif choice == "b":
             console.print(self.origin_data[name])
         elif choice == "d":
