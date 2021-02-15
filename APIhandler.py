@@ -110,9 +110,10 @@ class APIs:
         url = endpoint + "/me/drive/items/" + id
         data = {
             "name": newname
-            }
+        }
         resp = requests.patch(url=url, headers=self.headers, json=data)
         return resp
+
 
 class PATH:
     """处理路径，提供当前路径，上一级，并可在进入子目录时将文件夹名添加到路径."""

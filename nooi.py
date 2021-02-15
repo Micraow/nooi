@@ -102,8 +102,9 @@ class render:
         print("[a]进入一个项目页")
         print("[b]新建文件夹")
         print("[c]重命名项目")
+        print("[d]删除")
         if path.path != "":
-            print("[d]返回上一级目录。")
+            print("[e]返回上一级目录。")
         print("请填写选项字母:")
         choice = input().lower()
         if choice == "a":
@@ -119,7 +120,7 @@ class render:
             except ValueError:
                 print("请输入一个数字。")
                 self.base_action()
-        elif choice == "d":
+        elif choice == "e":
             path.upfolder()
         elif choice == "c":
             try:
@@ -133,14 +134,33 @@ class render:
             except IndexError:
                 print("您输入的数字超范围了。")
                 self.base_action()
-            self.origin_data[name].get('id')
             newname = input("请输入新名称：")
-            resp = API.rename(id=self.origin_data[name].get('id'), newname = newname)
+            resp = API.rename(
+                id=self.origin_data[name].get('id'),
+                newname=newname)
             if resp.status_code == 200:
                 print("更改成功")
             else:
                 print("存在问题")
                 console.print(resp.text)
+        elif choice == "d":
+            try:
+                num = int(input("输入序号："))
+            except ValueError:
+                print("请输入一个数字。")
+                self.base_action()
+            file_num = num - 1
+            try:
+                name = all_file[file_num]
+            except IndexError:
+                print("您输入的数字超范围了。")
+                self.base_action()
+            id = self.origin_data[name]["id"]
+            code = API.delete(id)
+            if code == 204:
+                console.print("删除成功!", style="red")
+            else:
+                print("遇到错误")
         elif choice == "b":
             foldername = input("请键入文件夹名（若已存在自动改名）")
             parent_item_id = self.origin_data[all_file[0]
