@@ -105,6 +105,14 @@ class APIs:
         resp = requests.delete(url=url, headers=self.headers)
         return resp.status_code
 
+    def rename(self, id, newname):
+        """重命名文件或文件夹"""
+        url = endpoint + "/me/drive/items/" + id
+        data = {
+            "name": newname
+            }
+        resp = requests.patch(url=url, headers=self.headers, json=data)
+        return resp
 
 class PATH:
     """处理路径，提供当前路径，上一级，并可在进入子目录时将文件夹名添加到路径."""
