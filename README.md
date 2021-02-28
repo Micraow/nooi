@@ -31,6 +31,11 @@ python nooi.py
 ![Lines of code](https://img.shields.io/tokei/lines/github/Micraow/nooi?style=flat-square)
 
 ## 警告
+
+近日GFW对Github的封锁更严了，我决定采用github与gitee双部署，GitHub更新可能更及时。
+
+gitee地址：[https://gitee.com/micraow/nooi?skip_mobile=true](https://gitee.com/micraow/nooi?skip_mobile=true)
+
 由于微软政策的改变：
 
 >自 2020 年 11 月 9 日起，最终用户将不再能够同意未经认证的发布者新注册的多租户应用。
