@@ -108,32 +108,12 @@ class render:
         print("请填写选项字母:")
         choice = input().lower()
         if choice == "a":
-            print("请填入项目序号")
-            try:
-                num = int(input())
-                file_num = num - 1
-                name = all_file[file_num]
-                deeper(name)
-            except IndexError:
-                print("您输入的数字超范围了。")
-                self.base_action()
-            except ValueError:
-                print("请输入一个数字。")
-                self.base_action()
+            deeper(self.get_corrent_num())
+
         elif choice == "e":
             path.upfolder()
         elif choice == "c":
-            try:
-                num = int(input("输入序号："))
-            except ValueError:
-                print("请输入一个数字。")
-                self.base_action()
-            file_num = num - 1
-            try:
-                name = all_file[file_num]
-            except IndexError:
-                print("您输入的数字超范围了。")
-                self.base_action()
+            name = self.get_corrent_num()
             newname = input("请输入新名称：")
             resp = API.rename(
                 id=self.origin_data[name].get('id'),
@@ -144,17 +124,7 @@ class render:
                 print("存在问题")
                 console.print(resp.text)
         elif choice == "d":
-            try:
-                num = int(input("输入序号："))
-            except ValueError:
-                print("请输入一个数字。")
-                self.base_action()
-            file_num = num - 1
-            try:
-                name = all_file[file_num]
-            except IndexError:
-                print("您输入的数字超范围了。")
-                self.base_action()
+            name = self.get_corrent_num()
             id = self.origin_data[name]["id"]
             code = API.delete(id)
             if code == 204:
@@ -176,6 +146,26 @@ class render:
         else:
             print("请检查填写格式是否有误，或者填错了。")
             self.base_action()
+
+    def get_corrent_num(self):
+        """询问输入序号，直至存在此项.返回文件名."""
+        print("请填入项目序号")
+        try:
+            num = int(input())
+        except ValueError:
+            print("请输入一个数字。")
+            self.base_action()
+        try:
+            file_num = num - 1
+            name = all_file[file_num]
+        except IndexError:
+            print("您输入的数字超范围了。")
+            self.base_action()
+        if name != "":
+            return name
+        else:
+            print("发生了意外错误。")
+
 
     def FileActions(self, name):
         """文件的相关操作"""
