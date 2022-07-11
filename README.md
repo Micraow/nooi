@@ -21,6 +21,7 @@ python nooi.py
 ## 状态
 
 [![DeepSource](https://deepsource.io/gh/Micraow/nooi.svg/?label=active+issues&show_trend=true)](https://deepsource.io/gh/Micraow/nooi/?ref=repository-badge)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMicraow%2Fnooi.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FMicraow%2Fnooi?ref=badge_shield)
 
 [![DeepSource](https://deepsource.io/gh/Micraow/nooi.svg/?label=resolved+issues&show_trend=true)](https://deepsource.io/gh/Micraow/nooi/?ref=repository-badge)
 
@@ -99,3 +100,7 @@ gitee地址：[https://gitee.com/micraow/nooi?skip_mobile=true](https://gitee.co
 
 由于比较忙，可能更新慢，请大家谅解，支持，谢谢！
 有问题请提issues ，我争取快回复，也欢迎pull requests.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMicraow%2Fnooi.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FMicraow%2Fnooi?ref=badge_large)
